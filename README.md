@@ -2,7 +2,7 @@
 
 This is the official implementation of the paper, `EMAformer: Enhancing Transformer through Embedding Armor for Time Series Forecasting`, accepted by AAAI 2026.
 
-If you are wondering why explicitly modeling inter-channel dependencies might lead to a decline in predictive performance, and you want to use Transformer for time series analysis tasks, then this repository is well-suited for you.
+If you are wondering why explicitly modeling inter-channel dependencies might lead to a decline in predictive performance and want to use Transformers for time series analysis, this repository is well-suited for you.
 
 ## Updates
 
@@ -37,16 +37,14 @@ pip install -r requirements.txt # -i https://pypi.tuna.tsinghua.edu.cn/simple
 ## Data Preparation
 
 1. The datasets can be obtained from [Google Drive](https://drive.google.com/file/d/1l51QsKvQPcqILT3DwfjCgx8Dsg2rpjot/view?usp=drive_link) or [Baidu Cloud](https://pan.baidu.com/s/11AWXg1Z6UwjHzmto4hesAA?pwd=9qjr).
-2. Organize them under a root directory and `unzip` it into directory `dataset`.
+2. Organize them under a root directory and `unzip` it into the directory `dataset`.
 
 ## Quick Start
 
 Run the scripts.
 
-Evaluation only:
-
 ```bash
-# run the multivariate forecating experiments with ECL  
+# run the multivariate forecasting experiments with ECL  
 bash scripts/multivariate_forecasting/ECL/EMAformer.sh
 ```
 
@@ -77,11 +75,12 @@ If you find this repo useful, please cite our paper.
 
 ## License
 
-This project is licensed under the terms of the MIT. See `LICENSE` for details.
+This project is licensed under the MIT license. See `LICENSE` for details.
 
 ## Contact & Support
 
-For questions, please open an issue or reach out to the authors. Contributions, bug reports, and improvement suggestions are welcome.
+For questions, please open an issue or contact the authors. Contributions, bug reports, and improvement suggestions are welcome.
+- Zhiwei Zhang (zhiweizhang@bjtu.edu.cn)
 
 ## Acknowledgement
 
