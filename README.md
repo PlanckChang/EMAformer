@@ -1,4 +1,19 @@
-# EMAformer: Enhancing Transformer through Embedding Armor for Time Series Forecasting
+<h1 align="center">
+  <img src="figures/Transformer_with_amour.png" alt="EMAformer Logo" height="266" style="vertical-align:middle;margin-bottom:8px;"><br>
+  EMAformer
+</h1>
+
+<p align="center">
+  <em>Enhancing Transformer through Embedding Armor for Time Series Forecasting</em>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/python-3.10-blue?logo=python&logoColor=white" alt="Python 3.10">
+  <img src="https://img.shields.io/badge/PyTorch-2.0.0-ee4c2c?logo=pytorch&logoColor=white" alt="PyTorch 2.0.0">
+  <a href="https://arxiv.org/abs/2511.08396">
+    <img src="https://img.shields.io/badge/arXiv-2511.08396-b31b1b?logo=arxiv&logoColor=white" alt="arXiv">
+  </a>
+</p>
 
 This is the official implementation of the paper, `EMAformer: Enhancing Transformer through Embedding Armor for Time Series Forecasting`, accepted by AAAI 2026.
 
@@ -6,11 +21,43 @@ If you are wondering why explicitly modeling inter-channel dependencies might le
 
 ## Updates
 
-- (2025.11) EMAformer was accepted by AAAI 2026.
+- 🌟 (2025.11) EMAformer was accepted by AAAI 2026.
 
 ## Introduction
 
 EMAformer enhances the Transformer architecture by simply introducing additional embeddings. It achieves state-of-the-art performance on 12 real-world benchmarks, reducing forecasting errors by an average of 2.73% in MSE and 5.15% in MAE.
+
+<p align="center">
+  <img src="./figures/CoV_matrix_plot_etth2.png" alt="Left" width="30%">
+  <img src="./figures/CoV_matrix_plot_ettm2.png" alt="Right" width="30%">
+</p>
+
+We analyzed inter-channel correlations using the coefficient of variation (CoV), which measures relative fluctuation around the mean of inter-channel
+correlations. For example, on ETTh2 and ETTm2, these correlations swing wildly over time, yielding the extremely high CoV values. Such volatility implies that local inter-channel relationships are inherently unstable. Such fluctuations can mislead self-attention mechanisms, resulting in suboptimal performance.
+
+<p align="center">
+<img src="./figures/overview.png"  alt="" align=center />
+</p>
+
+Overview of EMAformer. We enhance a Transformer within variate tokenization framework by integrating three types of auxiliary embeddings: (1) channel embeddings to capture the global representation and stabilize local inter-channel relations; (2) phase embeddings to restore the temporal detail and enhance phase sensitivity; and (3) joint channel-phase embeddings to capture intricate dependencies across channel and temporal dimensions.
+
+<p align="center">
+<img src="./figures/exp_main_results.png"  alt="" align=center />
+</p>
+
+Performance comparison of multivariate long-term time series forecasting. Our model achieves the best results in 20 cases and the second-best in 3 cases. Experiments are conducted with a fixed historical window length $L = 96$, and results are averaged over prediction horizons $H \in {12, 24, 48, 96}$ for PEMS series or ${96, 192, 336, 720}$ for the rest of datasets. The best outcomes are highlighted in **bold**, while the second-best are underlined. Lower values indicate better performance.
+
+<p align="center">
+<img src="./figures/exp_entropy.png"  alt="" align=center width="50%"/>
+</p>
+
+Entropy of the attention score. According to entropy changes, it turns out that our embedding scheme preserves periodicity while enabling the channel to focus more on information that is truly beneficial for prediction.
+
+<p align="center">
+<img src="./figures/exp_MLPversion.png"  alt="" align=center width=70%"/>
+</p>
+
+Comparison of our embedding strategy by replacing the Transformer backbone with MLP, against the strongest existing MLP baselines. Our MLP variant outperforms other MLP baselines across almost all datasets, underscoring the effectiveness of our embedding design.
 
 ## Environment
 
@@ -19,6 +66,8 @@ EMAformer enhances the Transformer architecture by simply introducing additional
 - Dependencies pinned in `requirements.txt`
 
 ```bash
+git clone https://github.com/PlanckChang/EMAformer.git
+cd EMAformer
 conda create python=3.10 -n EMAformer
 conda activate EMAformer
 pip install -r requirements.txt # -i https://pypi.tuna.tsinghua.edu.cn/simple
@@ -67,7 +116,7 @@ If you find this repo useful, please cite our paper.
 ```
 @inproceedings{emaformer2026,
   title     = {EMAformer: Enhancing Transformer through Embedding Armor for Time Series Forecasting},
-  author    = {Zhiwei Zhang, Xinyi Du, Xuanchi Guo, Weihao Wang, and Wenjuan Han},
+  author={Zhiwei Zhang and Xinyi Du and Xuanchi Guo and Weihao Wang and Wenjuan Han},
   booktitle={The Fortieth AAAI Conference on Artificial Intelligence},
   year      = {2026}
 }
@@ -80,6 +129,7 @@ This project is licensed under the MIT license. See `LICENSE` for details.
 ## Contact & Support
 
 For questions, please open an issue or contact the authors. Contributions, bug reports, and improvement suggestions are welcome.
+
 - Zhiwei Zhang (zhiweizhang@bjtu.edu.cn)
 
 ## Acknowledgement
@@ -89,3 +139,4 @@ We appreciate the following GitHub repos a lot for their valuable code and effor
 - iTransformer (https://github.com/thuml/iTransformer)
 - Time-Series-Library (https://github.com/thuml/Time-Series-Library)
 - CycleNet (https://github.com/ACAT-SCUT/CycleNet)
+- Genimi (https://gemini.google.com/) offers the EMAformer Logo.
