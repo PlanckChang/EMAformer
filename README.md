@@ -4,11 +4,11 @@
 </h1>
 
 <p align="center">
-  <em>Equip your Transformer with embedding armor and beat the MLP in time series forecasting.</em>
+  <em>Equip your Transformer with embedding armor and beat the MLPs in time series forecasting.</em>
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/python-3.10-blue?logo=python&logoColor=white" alt="Python 3.10">
+  <img src="https://img.shields.io/badge/python-3.8-blue?logo=python&logoColor=white" alt="Python 3.8">
   <img src="https://img.shields.io/badge/PyTorch-2.0.0-ee4c2c?logo=pytorch&logoColor=white" alt="PyTorch 2.0.0">
   <a href="https://arxiv.org/abs/2511.08396">
     <img src="https://img.shields.io/badge/arXiv-2511.08396-b31b1b?logo=arxiv&logoColor=white" alt="arXiv">
@@ -61,14 +61,14 @@ Comparison of our embedding strategy by replacing the Transformer backbone with 
 
 ## Environment
 
-- Python 3.10
+- Python 3.8
 - PyTorch >= 2.0.0 + CUDA >= 12.0
 - Dependencies pinned in `requirements.txt`
 
 ```bash
 git clone https://github.com/PlanckChang/EMAformer.git
 cd EMAformer
-conda create python=3.10 -n EMAformer
+conda create python=3.8 -n EMAformer
 conda activate EMAformer
 pip install -r requirements.txt # -i https://pypi.tuna.tsinghua.edu.cn/simple
 ```
