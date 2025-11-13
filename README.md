@@ -4,7 +4,7 @@
 </h1>
 
 <p align="center">
-  <em>Enhancing Transformer through Embedding Armor for Time Series Forecasting</em>
+  <em>Equip your Transformer with embedding armor and beat the MLP in time series forecasting.</em>
 </p>
 
 <p align="center">
@@ -15,9 +15,9 @@
   </a>
 </p>
 
-This is the official implementation of the paper, `EMAformer: Enhancing Transformer through Embedding Armor for Time Series Forecasting`, accepted by AAAI 2026.
+This is the official implementation of the paper, [EMAformer: Enhancing Transformer through Embedding Armor for Time Series Forecasting](https://arxiv.org/abs/2511.08396), accepted by AAAI 2026.
 
-If you are wondering why explicitly modeling inter-channel dependencies might lead to a decline in predictive performance and want to use Transformers for time series analysis, this repository is well-suited for you.
+If you are wondering why explicitly modeling inter-channel dependencies might lead to a decline in predictive performance and want to use Transformers for time series analysis, this repository is well-suited to you.
 
 ## Updates
 
@@ -45,7 +45,7 @@ Overview of EMAformer. We enhance a Transformer within variate tokenization fram
 <img src="./figures/exp_main_results.png"  alt="" align=center />
 </p>
 
-Performance comparison of multivariate long-term time series forecasting. Our model achieves the best results in 20 cases and the second-best in 3 cases. Experiments are conducted with a fixed historical window length $L = 96$, and results are averaged over prediction horizons $H \in {12, 24, 48, 96}$ for PEMS series or ${96, 192, 336, 720}$ for the rest of datasets. The best outcomes are highlighted in **bold**, while the second-best are underlined. Lower values indicate better performance.
+Performance comparison of multivariate long-term time series forecasting. Our model achieves the best results in 20 cases and the second-best in 3 cases. Experiments are conducted with a fixed historical window length $L = 96$, and results are averaged over prediction horizons $H \in$ {12, 24, 48, 96} for PEMS series or {96, 192, 336, 720} for the rest of datasets. The best outcomes are highlighted in **bold**, while the second-best are underlined. Lower values indicate better performance.
 
 <p align="center">
 <img src="./figures/exp_entropy.png"  alt="" align=center width="50%"/>
@@ -130,7 +130,7 @@ This project is licensed under the MIT license. See `LICENSE` for details.
 
 For questions, please open an issue or contact the authors. Contributions, bug reports, and improvement suggestions are welcome.
 
-- Zhiwei Zhang (zhiweizhang@bjtu.edu.cn)
+- Zhiwei Zhang <zhiweizhang@bjtu.edu.cn>
 
 ## Acknowledgement
 
