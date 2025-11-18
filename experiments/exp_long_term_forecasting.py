@@ -34,10 +34,7 @@ class Exp_Long_Term_Forecast(Exp_Basic):
         return model_optim
 
     def _select_criterion(self):
-        # criterion = nn.MSELoss()
         criterion = nn.L1Loss()
-        # criterion = nn.SmoothL1Loss()
-        # criterion = fft_loss
         return criterion
 
     def vali(self, vali_data, vali_loader, criterion):
@@ -158,13 +155,13 @@ class Exp_Long_Term_Forecast(Exp_Basic):
                     loss = criterion(outputs, batch_y)
                     train_loss.append(loss.item())
 
-                # if (i + 1) % 100 == 0:
-                #     print("\titers: {0}, epoch: {1} | loss: {2:.7f}".format(i + 1, epoch + 1, loss.item()))
-                #     speed = (time.time() - time_now) / iter_count
-                #     left_time = speed * ((self.args.train_epochs - epoch) * train_steps - i)
-                #     print('\tspeed: {:.4f}s/iter; left time: {:.4f}s'.format(speed, left_time))
-                #     iter_count = 0
-                #     time_now = time.time()
+                if (i + 1) % 100 == 0:
+                    print("\titers: {0}, epoch: {1} | loss: {2:.7f}".format(i + 1, epoch + 1, loss.item()))
+                    speed = (time.time() - time_now) / iter_count
+                    left_time = speed * ((self.args.train_epochs - epoch) * train_steps - i)
+                    print('\tspeed: {:.4f}s/iter; left time: {:.4f}s'.format(speed, left_time))
+                    iter_count = 0
+                    time_now = time.time()
 
                 if self.args.use_amp:
                     scaler.scale(loss).backward()
@@ -254,14 +251,14 @@ class Exp_Long_Term_Forecast(Exp_Basic):
                 true = batch_y
                 preds.append(pred)
                 trues.append(true)
-                # if i % 20 == 0:
-                #     input = batch_x.detach().cpu().numpy()
-                #     if test_data.scale and self.args.inverse:
-                #         shape = input.shape
-                #         input = test_data.inverse_transform(input.squeeze(0)).reshape(shape)
-                #     gt = np.concatenate((input[0, :, -1], true[0, :, -1]), axis=0)
-                #     pd = np.concatenate((input[0, :, -1], pred[0, :, -1]), axis=0)
-                #     visual(gt, pd, os.path.join(folder_path, str(i) + '.pdf'))
+                if i % 20 == 0:
+                    input = batch_x.detach().cpu().numpy()
+                    if test_data.scale and self.args.inverse:
+                        shape = input.shape
+                        input = test_data.inverse_transform(input.squeeze(0)).reshape(shape)
+                    gt = np.concatenate((input[0, :, -1], true[0, :, -1]), axis=0)
+                    pd = np.concatenate((input[0, :, -1], pred[0, :, -1]), axis=0)
+                    visual(gt, pd, os.path.join(folder_path, str(i) + '.pdf'))
 
         # preds = np.array(preds)
         # trues = np.array(trues)
@@ -344,52 +341,3 @@ class Exp_Long_Term_Forecast(Exp_Basic):
         np.save(folder_path + 'real_prediction.npy', preds)
 
         return
-    
-
-
-# def fft_loss(pred, true):
-#     pred_fft = torch.fft.rfft(pred, dim=1)
-#     true_fft = torch.fft.rfft(true, dim=1)
-#     # return 0.9*torch.mean((pred_fft.abs() - true_fft.abs())**2) + 0.1*torch.mean((pred - true)**2)
-#     # return torch.mean((pred - true)**2)
-#     return  torch.mean(torch.abs(pred_fft - true_fft))
-
-
-def fft_loss(x, y, mode='magnitude+phase'):
-    # X = torch.fft.rfft(x, dim=-1)
-    # Y = torch.fft.rfft(y, dim=-1)
-    mse = torch.mean((x - y)**2)
-    X = torch.fft.rfft2(x)
-    Y = torch.fft.rfft2(y)
-
-    mag_X = torch.abs(X)
-    mag_Y = torch.abs(Y)
-
-    phase_X = torch.angle(X)
-    phase_Y = torch.angle(Y)
-
-    mag_loss = torch.mean(torch.abs(mag_X - mag_Y))
-
-    if mode == 'magnitude':
-        return mag_loss
-
-    phase_diff = torch.cos(phase_X - phase_Y)  # cos diff ∈ [–1, 1]
-    phase_loss = torch.mean(1 - phase_diff)  # ∈ [0, 2]
-
-    if mode == 'magnitude+phase':
-        return 0.9*(0.5* mag_loss + 0.5*phase_loss) + 0.1*mse
-    elif mode == 'complex':
-        return torch.mean(torch.abs(X - Y))
-    else:
-        raise ValueError("Invalid mode")
-    
-
-# def fft_loss_2(x, y, mode='magnitude+phase'):
-#     X = torch.fft.fft(x, dim=-1)
-#     Y = torch.fft.fft(y, dim=-1)
-
-#     mag_X = torch.abs(X)
-#     mag_Y = torch.abs(Y)
-
-#     phase_X = torch.angle(X)
-#     phase_Y = torch.angle(Y)
