@@ -114,11 +114,11 @@ Key CLI arguments:
 If you find this repo useful, please cite our paper.
 
 ```
-@inproceedings{emaformer2026,
-  title     = {EMAformer: Enhancing Transformer through Embedding Armor for Time Series Forecasting},
-  author={Zhiwei Zhang and Xinyi Du and Xuanchi Guo and Weihao Wang and Wenjuan Han},
-  booktitle={The Fortieth AAAI Conference on Artificial Intelligence},
-  year      = {2026}
+@article{zhang2025emaformer,
+  title={EMAformer: Enhancing Transformer through Embedding Armor for Time Series Forecasting},
+  author={Zhang, Zhiwei and Du, Xinyi and Guo, Xuanchi and Wang, Weihao and Han, Wenjuan},
+  journal={arXiv preprint arXiv:2511.08396},
+  year={2025}
 }
 ```
 
