@@ -134,9 +134,8 @@ For questions, please open an issue or contact the authors. Contributions, bug r
 
 ## Acknowledgement
 
-We appreciate the following GitHub repos a lot for their valuable code and efforts.
+We appreciate the following projects a lot.
 
 - iTransformer (https://github.com/thuml/iTransformer)
-- Time-Series-Library (https://github.com/thuml/Time-Series-Library)
 - CycleNet (https://github.com/ACAT-SCUT/CycleNet)
 - Genimi (https://gemini.google.com/) offers the EMAformer Logo.
